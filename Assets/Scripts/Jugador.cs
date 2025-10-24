@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -39,9 +40,9 @@ public class Jugador : MonoBehaviour
 
     void TripleDisparo()
     {
-        CrearBala(new Vector3(0, 2, 0), 0);
-        CrearBala(new Vector3(1.5f, 1, 0), -45);
-        CrearBala(new Vector3(-1.5f, 1, 0), 45);
+        CrearBala(new Vector3(0, 1.5f, 0), 0);
+        CrearBala(new Vector3(1f, 1, 0), -45);
+        CrearBala(new Vector3(-1f, 1, 0), 45);
     }
 
     void CrearBala(Vector3 desplazamiento, float angulo)
@@ -84,8 +85,19 @@ public class Jugador : MonoBehaviour
         {
             vida -= 1;
         }
+
+
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EvilBalaColision"))
+        {
+            Destroy(collision.gameObject);
+            vida -= 1;
 
+        }
+
+    }
 
 }
