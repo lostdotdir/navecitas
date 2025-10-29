@@ -15,6 +15,11 @@ public class Bala : MonoBehaviour
     {
         //transform.position += new Vector3(0, velocidad, 0) * Time.deltaTime;
         transform.position += transform.up * Time.deltaTime * velocidad;
+
+        if (transform.position.y <= -5)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 }
