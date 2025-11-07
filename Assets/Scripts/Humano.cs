@@ -8,6 +8,8 @@ public class Humano : MonoBehaviour
     [SerializeField] float velocidad = 3, fuerzaSalto = 6, distanciaSensorSuelo = 0.6f;
     [SerializeField] LayerMask mascaraSuelo;
     [SerializeField] bool enSuelo;
+    [SerializeField] GameObject prefabBala;
+    [SerializeField] Transform puntoDisparo;
     Rigidbody2D rb;
     Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,9 +30,14 @@ public class Humano : MonoBehaviour
         saltar.action.started -= Saltar;
     }
 
+    void CrearBala()
+    {
+        Instantiate(prefabBala, puntoDisparo.position, puntoDisparo.rotation);
+    }
+
     private void Atacar(InputAction.CallbackContext obj)
     {
-
+        animator.SetTrigger("atacar");
     }
 
     private void Saltar(InputAction.CallbackContext obj)
